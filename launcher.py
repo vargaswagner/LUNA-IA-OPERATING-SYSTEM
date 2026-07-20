@@ -1,10 +1,11 @@
-def main():
-    print("=" * 60)
-    print("        LUNA AI OPERATING SYSTEM")
-    print("=" * 60)
-    print("Inicializando sistema...")
-    print("Sistema iniciado correctamente.")
+import asyncio
+
+from app.main import run
+
 
 
 if __name__ == "__main__":
-    main()
+
+    asyncio.run(
+        run()
+    )
