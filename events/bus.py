@@ -1,5 +1,9 @@
 from collections import defaultdict
-from typing import Callable
+
+from typing import Callable, Type
+
+from loguru import logger
+
 
 
 class EventBus:
@@ -13,11 +17,19 @@ class EventBus:
 
     def subscribe(
         self,
-        event_name: str,
-        callback: Callable
+        event_type: Type,
+        handler: Callable
     ):
 
-        self.listeners[event_name].append(callback)
+
+        self.listeners[event_type].append(
+            handler
+        )
+
+
+        logger.info(
+            f"Subscribed: {event_type.__name__}"
+        )
 
 
 
@@ -26,12 +38,21 @@ class EventBus:
         event
     ):
 
-        listeners = self.listeners.get(
-            event.name,
+
+        event_type = type(event)
+
+
+        handlers = self.listeners.get(
+            event_type,
             []
         )
 
 
-        for listener in listeners:
+        logger.info(
+            f"Publishing: {event_type.__name__}"
+        )
 
-            await listener(event)
+
+        for handler in handlers:
+
+            await handler(event)

@@ -1,12 +1,67 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
+from uuid import uuid4
+
 
 
 @dataclass
-class Event:
+class BaseEvent:
 
-    name: str
+    event_id: str = field(
+        default_factory=lambda: str(uuid4())
+    )
 
-    payload: dict
+    created_at: datetime = field(
+        default_factory=datetime.now
+    )
 
-    created_at: datetime = datetime.now()
+
+@dataclass
+class SystemStartedEvent(BaseEvent):
+
+    message: str = "LUNA started"
+
+
+
+@dataclass
+class SystemStoppedEvent(BaseEvent):
+
+    message: str = "LUNA stopped"
+
+
+
+@dataclass
+class VoiceReceivedEvent(BaseEvent):
+
+    text: str = ""
+
+
+
+@dataclass
+class IntentDetectedEvent(BaseEvent):
+
+    intent: str = ""
+
+    confidence: float = 0.0
+
+
+
+@dataclass
+class ToolExecutionRequestedEvent(BaseEvent):
+
+    tool_name: str = ""
+
+    parameters: dict = field(
+        default_factory=dict
+    )
+
+
+
+@dataclass
+class ToolExecutedEvent(BaseEvent):
+
+    tool_name: str = ""
+
+    result: dict = field(
+        default_factory=dict
+    )
