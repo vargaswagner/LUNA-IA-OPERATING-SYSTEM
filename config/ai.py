@@ -1,0 +1,7 @@
+WHISPER_MODEL = "small"
+
+WHISPER_LANGUAGE = "es"
+
+WHISPER_DEVICE = "cpu"
+
+WHISPER_COMPUTE = "int8"

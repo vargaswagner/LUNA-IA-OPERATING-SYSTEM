@@ -21,6 +21,6 @@ class Container:
 
         self.registry = Registry()
 
-
+        self.dispatcher = None
 
 container = Container()

@@ -65,3 +65,56 @@ class ToolExecutedEvent(BaseEvent):
     result: dict = field(
         default_factory=dict
     )
+    
+@dataclass
+class AudioCapturedEvent(BaseEvent):
+
+    audio_data: object = None
+
+    sample_rate: int = 16000
+    
+@dataclass
+class AudioFrameEvent(BaseEvent):
+
+    audio_data: object = None
+
+    sample_rate: int = 16000
+    
+    
+@dataclass
+class VoiceDetectedEvent(BaseEvent):
+
+    audio_data: object = None
+
+@dataclass
+class WakeWordDetectedEvent(BaseEvent):
+
+    word: str = "jarvis"
+
+    confidence: float = 0.0
+
+
+@dataclass
+class SpeechRecognizedEvent(BaseEvent):
+
+    text: str = ""
+
+    language: str = "es"
+    
+
+@dataclass
+class CompleteAudioEvent(BaseEvent):
+
+    audio_data: object = None
+
+    duration: float = 0.0
+    
+
+@dataclass
+class CompleteAudioEvent(BaseEvent):
+
+    audio_data: object = None
+
+    sample_rate: int = 16000
+
+    duration: float = 0.0
