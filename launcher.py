@@ -1,21 +1,47 @@
-import asyncio
+# import asyncio
+# import traceback
+
+# from app.main import run
+
+
+# if __name__ == "__main__":
+
+#     try:
+
+#         asyncio.run(
+#             run()
+#         )
+
+#     except Exception:
+
+#         traceback.print_exc()
+
+#         input(
+#             "\nPresiona ENTER para cerrar..."
+#         )
+
+
+
 import traceback
 
-from app.main import run
+
+try:
+
+    from gui.app import JarvisApp
+
+    print("1 - Import JARVIS OK")
 
 
-if __name__ == "__main__":
+    jarvis = JarvisApp()
 
-    try:
+    print("2 - Ventana creada")
 
-        asyncio.run(
-            run()
-        )
 
-    except Exception:
+    jarvis.run()
 
-        traceback.print_exc()
 
-        input(
-            "\nPresiona ENTER para cerrar..."
-        )
+except Exception:
+
+    traceback.print_exc()
+
+    input("\nENTER para salir...")
